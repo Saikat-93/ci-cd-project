@@ -10,3 +10,16 @@ spec:
         #!/bin/bash
         echo "Cleaning up workspace..."
         rm -rf /workspace/*
+
+
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: run-tests
+spec:
+  steps:
+    - name: run-nose-tests
+      image: python:3.8-slim
+      script: |
+        pip install nose
+        nosetests
